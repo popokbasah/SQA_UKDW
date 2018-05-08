@@ -9,6 +9,7 @@ package sqa;
  *
  * @author yoelt
  */
+import java.awt.Color;
 import java.util.Random;
 
 public final class Dadu {
@@ -16,6 +17,8 @@ public final class Dadu {
     private static Random randGenerator = new Random();
     private final int jumSisi;
     private int hasil;
+    private int temp=0;
+    private Color[] colors = {Color.RED, Color.GREEN, Color.BLUE, Color.CYAN, Color.MAGENTA, Color.YELLOW, Color.WHITE, Color.BLACK, Color.PINK, Color.ORANGE};
     
     public Dadu() {
         this(DEFAULT_SISI);
@@ -27,7 +30,11 @@ public final class Dadu {
     
     public int lempar() {
         hasil = randGenerator.nextInt(jumSisi) + 1;
-        return hasil;
+        while (temp==hasil) {
+            hasil = randGenerator.nextInt(jumSisi) + 1;
+        }
+        temp = hasil;
+	return hasil;
     }
     
     public int getJumSisi() {
@@ -38,8 +45,16 @@ public final class Dadu {
         return hasil;
     }
     
+    public Color getWarnaSisi() {
+        //warna random tiap kali lempar
+        return colors[randGenerator.nextInt(jumSisi)];
+        
+        /*warna tergantung hasil dari lempar dadu, mengikuti index array
+        return colors[hasil];*/
+    }
+    
     @Override
     public String toString() {
-        return "Jumlah sisi dadu: " + getJumSisi() + " hasil: " + getHasil();
+    	return "Jumlah sisi dadu: " + getJumSisi() + " hasil: " + getHasil() + " warna: " + getWarnaSisi();
     }
 }
