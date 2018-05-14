@@ -7,7 +7,7 @@ package sqa;
 
 /**
  *
- * @author yoelt
+ * @author KatonGilang
  */
 public class SQA {
 
@@ -16,6 +16,15 @@ public class SQA {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        
+        //membuat objek dari class dadu
+        Dadu d1 = new Dadu(6); 
+        
+        //pengen lempar sebanyak 6 kali
+        for (int i=0;i<6;i++){
+            d1.lempar(); //random lemparan
+            System.out.println(d1.toString());
+        }
     }
     
 }
